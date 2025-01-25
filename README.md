@@ -1,2 +1,2 @@
-# container-clone
-A base container clone repository
+# jenkins-controller
+A modified Jenkins package with plugins pre-installed
