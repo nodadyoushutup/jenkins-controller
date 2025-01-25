@@ -1,2 +1,2 @@
-# docker-clone
-A base docker clone repository
+# container-clone
+A base container clone repository
