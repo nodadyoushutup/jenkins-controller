@@ -7,6 +7,7 @@
   "branchPrefix": "renovate/", 
   "automerge": true,
   "enabledManagers": [
-    "dockerfile"
+    "dockerfile",
+    "jenkins"
   ]
 }
