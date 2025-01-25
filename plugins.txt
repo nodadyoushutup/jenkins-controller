@@ -1,0 +1,17 @@
+ant:511.v0a_a_1a_334f41b_
+build-timeout:1.33
+dark-theme:514.va_3ea_73d65dc1
+email-ext:1866.v14fa_6d201654
+github-branch-source:1809.v088b_5f22c768
+gradle:2.14
+ldap:770.vb_455e934581a_
+matrix-auth:3.2.3
+pam-auth:1.11
+workflow-aggregator:600.vb_57cdd26fdd7
+pipeline-graph-view:401.v99b_6582132f4
+pipeline-github-lib:61.v629f2cc41d83
+ssh-slaves:3.1021.va_cc11b_de26a_e
+timestamper:1.28
+ws-cleanup:0.48
+github-oauth:621.v33b_4394dda_4d
+github-pullrequest:0.7.2
