@@ -15,3 +15,4 @@ timestamper:1.28
 ws-cleanup:0.48
 github-oauth:621.v33b_4394dda_4d
 github-pullrequest:0.7.2
+ansicolor:1.0.6
