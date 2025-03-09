@@ -13,6 +13,6 @@ pipeline-github-lib:61.v629f2cc41d83
 ssh-slaves:3.1031.v72c6b_883b_869
 timestamper:1.28
 ws-cleanup:0.48
-github-oauth:621.v33b_4394dda_4d
+github-oauth:647.v44f5236c308d
 github-pullrequest:0.7.2
 ansicolor:1.0.6
