@@ -2,7 +2,7 @@ ant:513.vde9e7b_a_0da_0f
 build-timeout:1.36
 dark-theme:524.vd675b_22b_30cb_
 email-ext:1876.v28d8d38315b_d
-github-branch-source:1810.v913311241fa_9
+github-branch-source:1815.v9152b_2ff7a_1b_
 gradle:2.14.1
 ldap:776.vddf3e325103b_
 matrix-auth:3.2.4
