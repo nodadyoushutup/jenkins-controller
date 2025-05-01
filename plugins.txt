@@ -8,7 +8,7 @@ ldap:776.vddf3e325103b_
 matrix-auth:3.2.4
 pam-auth:1.12
 workflow-aggregator:600.vb_57cdd26fdd7
-pipeline-graph-view:423.v765c49ca_da_3f
+pipeline-graph-view:491.v11235f4a_6095
 pipeline-github-lib:65.v203688e7727e
 ssh-slaves:3.1031.v72c6b_883b_869
 timestamper:1.28
