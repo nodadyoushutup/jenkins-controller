@@ -4,7 +4,7 @@ dark-theme:524.vd675b_22b_30cb_
 email-ext:1911.v19b_8e86f9815
 github-branch-source:1810.v913311241fa_9
 gradle:2.15
-ldap:776.vddf3e325103b_
+ldap:780.vcb_33c9a_e4332
 matrix-auth:3.2.6
 pam-auth:1.12
 workflow-aggregator:608.v67378e9d3db_1
