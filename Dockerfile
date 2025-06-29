@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.500
+FROM jenkins/jenkins:2.516
 
 # Switch to root for installing plugins and additional tools
 USER root
