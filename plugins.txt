@@ -17,4 +17,4 @@ github-oauth:651.v135e939e8b_60
 github-pullrequest:0.7.2
 ansicolor:1.0.6
 configuration-as-code:1971.vf9280461ea_89
-job-dsl:1.91
+job-dsl:1.93
