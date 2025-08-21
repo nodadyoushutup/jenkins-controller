@@ -5,7 +5,7 @@ email-ext:1911.v19b_8e86f9815
 github-branch-source:1810.v913311241fa_9
 gradle:2.15
 ldap:780.vcb_33c9a_e4332
-matrix-auth:3.2.6
+matrix-auth:3.2.8
 pam-auth:1.12
 workflow-aggregator:608.v67378e9d3db_1
 pipeline-graph-view:423.v765c49ca_da_3f
