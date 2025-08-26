@@ -3,7 +3,7 @@ build-timeout:1.38
 dark-theme:574.va_19f05d54df5
 email-ext:1925.v1598902b_58dd
 github-branch-source:1834.v857721ea_74c6
-gradle:2.15
+gradle:2.16.1149.v711b_998b_0532
 ldap:780.vcb_33c9a_e4332
 matrix-auth:3.2.8
 pam-auth:1.12
