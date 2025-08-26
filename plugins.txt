@@ -11,7 +11,7 @@ workflow-aggregator:608.v67378e9d3db_1
 pipeline-graph-view:628.va_6f6a_1d12848
 pipeline-github-lib:65.v203688e7727e
 ssh-slaves:3.1071.v0d059c7b_c555
-timestamper:1.29
+timestamper:1.30
 ws-cleanup:0.49
 github-oauth:651.v135e939e8b_60
 github-pullrequest:0.7.2
