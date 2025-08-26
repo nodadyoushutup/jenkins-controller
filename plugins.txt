@@ -1,7 +1,7 @@
 ant:518.v8d8dc7945eca_
 build-timeout:1.38
 dark-theme:567.v9d3ca_a_3142f5
-email-ext:1911.v19b_8e86f9815
+email-ext:1925.v1598902b_58dd
 github-branch-source:1834.v857721ea_74c6
 gradle:2.15
 ldap:780.vcb_33c9a_e4332
