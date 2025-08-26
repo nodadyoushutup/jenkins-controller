@@ -10,7 +10,7 @@ pam-auth:1.12
 workflow-aggregator:608.v67378e9d3db_1
 pipeline-graph-view:423.v765c49ca_da_3f
 pipeline-github-lib:65.v203688e7727e
-ssh-slaves:3.1031.v72c6b_883b_869
+ssh-slaves:3.1071.v0d059c7b_c555
 timestamper:1.29
 ws-cleanup:0.49
 github-oauth:651.v135e939e8b_60
