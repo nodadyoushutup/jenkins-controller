@@ -7,21 +7,31 @@ USER root
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt --verbose
 
-# Install prerequisite packages for adding repositories and downloading files
-RUN apt-get update && apt-get install -y \
-    apt-transport-https \
+# Install dependencies required for Ansible and Terraform
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ansible \
     curl \
-    gnupg \
-    lsb-release \
-    software-properties-common
+    unzip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add HashiCorp's GPG key and repository (for Terraform)
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
-    echo "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" > /etc/apt/sources.list.d/hashicorp.list
-
-# Update package lists and install Terraform and Ansible
-RUN apt-get update && apt-get install -y terraform ansible && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install Terraform from HashiCorp release archives for the active architecture
+ARG TERRAFORM_VERSION=1.7.5
+RUN set -eux; \
+    arch="$(dpkg --print-architecture)"; \
+    case "$arch" in \
+      amd64) terraform_arch="amd64" ;; \
+      arm64) terraform_arch="arm64" ;; \
+      *) echo "Unsupported architecture: $arch" >&2; exit 1 ;; \
+    esac; \
+    terraform_file="terraform_${TERRAFORM_VERSION}_linux_${terraform_arch}.zip"; \
+    terraform_url="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${terraform_file}"; \
+    curl -fsSLo /tmp/terraform.zip "$terraform_url"; \
+    curl -fsSLo /tmp/terraform_SHA256SUMS "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS"; \
+    grep "  ${terraform_file}" /tmp/terraform_SHA256SUMS > /tmp/terraform_SHA256SUMS_filtered; \
+    sha256sum -c /tmp/terraform_SHA256SUMS_filtered; \
+    unzip /tmp/terraform.zip -d /usr/local/bin; \
+    rm /tmp/terraform.zip /tmp/terraform_SHA256SUMS /tmp/terraform_SHA256SUMS_filtered; \
+    terraform --version
 
 # Switch back to the jenkins user
 USER jenkins
