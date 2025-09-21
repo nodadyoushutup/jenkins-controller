@@ -16,12 +16,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Terraform from HashiCorp release archives for the active architecture
 ARG TERRAFORM_VERSION=1.7.5
+# TARGETARCH is automatically populated by BuildKit when building multi-platform
+# images. Fallback to dpkg when building without BuildKit or on a single
+# architecture.
+ARG TARGETARCH
 RUN set -eux; \
-    arch="$(dpkg --print-architecture)"; \
-    case "$arch" in \
-      amd64) terraform_arch="amd64" ;; \
-      arm64) terraform_arch="arm64" ;; \
-      *) echo "Unsupported architecture: $arch" >&2; exit 1 ;; \
+    detected_arch="${TARGETARCH:-$(dpkg --print-architecture)}"; \
+    case "$detected_arch" in \
+      amd64|x86_64) terraform_arch="amd64" ;; \
+      arm64|aarch64) terraform_arch="arm64" ;; \
+      *) echo "Unsupported architecture: $detected_arch" >&2; exit 1 ;; \
     esac; \
     terraform_file="terraform_${TERRAFORM_VERSION}_linux_${terraform_arch}.zip"; \
     terraform_url="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${terraform_file}"; \

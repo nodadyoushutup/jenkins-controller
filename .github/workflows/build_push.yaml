@@ -17,6 +17,14 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          install: true
+
       - name: Extract Jenkins version from Dockerfile
         id: get_version
         run: |
@@ -30,16 +38,11 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build and push Docker image (version + latest)
+      - name: Build and push multi-platform Docker image (version + latest)
         run: |
-          # Build with two tags: versioned and latest
-          docker build \
-            -t ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }} \
-            -t ghcr.io/${{ github.repository }}:latest \
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }} \
+            --tag ghcr.io/${{ github.repository }}:latest \
+            --push \
             .
-
-          # Push the versioned tag
-          docker push ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }}
-
-          # Push the latest tag
-          docker push ghcr.io/${{ github.repository }}:latest
