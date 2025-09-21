@@ -29,12 +29,13 @@ RUN set -eux; \
     esac; \
     terraform_file="terraform_${TERRAFORM_VERSION}_linux_${terraform_arch}.zip"; \
     terraform_url="https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${terraform_file}"; \
-    curl -fsSLo /tmp/terraform.zip "$terraform_url"; \
+    terraform_zip="/tmp/${terraform_file}"; \
+    curl -fsSLo "$terraform_zip" "$terraform_url"; \
     curl -fsSLo /tmp/terraform_SHA256SUMS "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS"; \
     grep "  ${terraform_file}" /tmp/terraform_SHA256SUMS > /tmp/terraform_SHA256SUMS_filtered; \
-    sha256sum -c /tmp/terraform_SHA256SUMS_filtered; \
-    unzip /tmp/terraform.zip -d /usr/local/bin; \
-    rm /tmp/terraform.zip /tmp/terraform_SHA256SUMS /tmp/terraform_SHA256SUMS_filtered; \
+    (cd /tmp && sha256sum -c terraform_SHA256SUMS_filtered); \
+    unzip "$terraform_zip" -d /usr/local/bin; \
+    rm "$terraform_zip" /tmp/terraform_SHA256SUMS /tmp/terraform_SHA256SUMS_filtered; \
     terraform --version
 
 # Switch back to the jenkins user
