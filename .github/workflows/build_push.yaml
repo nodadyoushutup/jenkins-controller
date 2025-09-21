@@ -41,7 +41,7 @@ jobs:
       - name: Build and push multi-platform Docker image (version + latest)
         run: |
           docker buildx build \
-            --platform linux/amd64,linux/arm64,linux/arm/v7 \
+            --platform linux/amd64,linux/arm64 \
             --tag ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }} \
             --tag ghcr.io/${{ github.repository }}:latest \
             --push \
