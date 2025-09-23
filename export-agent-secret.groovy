@@ -13,8 +13,10 @@ import java.nio.file.Path
 import java.nio.file.attribute.PosixFilePermission
 import java.util.EnumSet
 
+
 // --- Config ---
-final File YAML_FILE   = new File("/jenkins/casc_configs/config.yaml")
+def casc_config_dir = System.getenv("CASC_JENKINS_CONFIG")
+final File YAML_FILE   = new File("${casc_config_dir}/config.yaml")
 final File SECRETS_DIR = new File(new File(System.getProperty("user.home")), ".jenkins")
 
 def sanitize = { String s -> (s ?: "").replaceAll(/[^A-Za-z0-9._-]/, "_") }
