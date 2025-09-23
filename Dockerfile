@@ -7,6 +7,9 @@ USER root
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt --verbose
 
+# Copy the agent exporter
+COPY export-agent-secret.groovy /usr/share/jenkins/ref/init.groovy.d/export-agent-secret.groovy
+
 # TARGETARCH is provided automatically when building with BuildKit. Fallback to
 # the runtime architecture when building without it.
 ARG TARGETARCH
