@@ -2,6 +2,9 @@ services:
   jenkins:
     image: ghcr.io/nodadyoushutup/jenkins-controller:latest
     container_name: jenkins-controller
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
