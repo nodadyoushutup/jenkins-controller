@@ -1,0 +1,61 @@
+appearance:
+  pipelineGraphView:
+    showGraphOnBuildPage: true
+    showGraphOnJobPage: true
+  themeManager:
+    disableUserThemes: false
+    theme: dark
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              description: "Cloud image repository url"
+              id: "CLOUD_IMAGE_REPOSITORY_URL"
+              scope: GLOBAL
+              secret: "https://cir.domain.com"
+          - string:
+              description: "Cloud image repository api key"
+              id: "CLOUD_IMAGE_REPOSITORY_APIKEY"
+              scope: GLOBAL
+              secret: "abcdefg12345678"
+
+jenkins:
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  nodes:
+    - permanent:
+        name: "alpha"
+        remoteFS: "/home/jenkins"
+        launcher:
+          inbound:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+    - permanent:
+        name: "beta"
+        remoteFS: "/home/jenkins"
+        launcher:
+          inbound:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+  numExecutors: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "password"
+  systemMessage: |
+    Jenkins configured automatically by Jenkins Configuration as Code plugin
+
+unclassified:
+  location:
+    url: "http://192.168.1.101:8080"
