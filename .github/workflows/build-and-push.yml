@@ -56,12 +56,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Build and push multi-platform Docker image (version + latest)
-          run: |
-            docker buildx build \
-              --platform linux/amd64,linux/arm64 \
-              --tag ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }} \
-              --tag ghcr.io/${{ github.repository }}:latest \
-              --push \
-              --file docker/Dockerfile \
-              docker
+      - name: Build and push multi-platform Docker image (version + latest)
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }} \
+            --tag ghcr.io/${{ github.repository }}:latest \
+            --push \
+            --file docker/Dockerfile \
+            docker
