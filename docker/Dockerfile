@@ -3,7 +3,9 @@ FROM jenkins/jenkins:2.529
 # Switch to root for installing plugins and additional tools
 USER root
 
-# Copy the plugins file and install plugins
+# Copy the plugins file and install plugins. Both the CI workflow and the local
+# docker compose definition build from the `docker/` directory, so the files are
+# addressed relative to that context.
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt --verbose
 
