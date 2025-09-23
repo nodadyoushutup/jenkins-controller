@@ -2,8 +2,13 @@ name: Build and Push Docker Image
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish"
+        required: true
   push:
-    branches: [ "main" ]
+    tags:
+      - "*"
 
 permissions:
   contents: read
@@ -25,10 +30,23 @@ jobs:
         with:
           install: true
 
-      - name: Extract Jenkins inbound agent version from Dockerfile
-        id: get_version
+      - name: Determine version
+        id: version
         run: |
-          version=$(grep -oP 'FROM\s+[^\s:]+:\K[^\s]+' Dockerfile)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            version="${{ github.event.inputs.version }}"
+          elif [ "${{ github.ref_type }}" = "tag" ]; then
+            version="$GITHUB_REF_NAME"
+          else
+            echo "Unsupported event type" >&2
+            exit 1
+          fi
+
+          if [ -z "$version" ]; then
+            echo "Version could not be determined" >&2
+            exit 1
+          fi
+
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Log in to GitHub Container Registry
@@ -42,7 +60,7 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --tag ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }} \
+            --tag ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }} \
             --tag ghcr.io/${{ github.repository }}:latest \
             --push \
             .
