@@ -16,5 +16,5 @@ ws-cleanup:0.49
 github-oauth:651.v135e939e8b_60
 github-pullrequest:0.7.2
 ansicolor:1.0.6
-configuration-as-code:1985.vdda_32d0c4ea_b_
+configuration-as-code:1995.v540b_50a_eb_0c1
 job-dsl:1.93
